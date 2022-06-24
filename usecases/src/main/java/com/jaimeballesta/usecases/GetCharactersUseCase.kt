@@ -2,7 +2,7 @@ package com.jaimeballesta.usecases
 
 import com.jaimeballesta.data.repository.MarvelRepository
 import com.jaimeballesta.domain.common.connectionErrorCode
-import com.jaimeballesta.domain.model.CharacterItem
+import com.jaimeballesta.domain.model.home.CharacterItem
 import com.jaimeballesta.domain.common.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

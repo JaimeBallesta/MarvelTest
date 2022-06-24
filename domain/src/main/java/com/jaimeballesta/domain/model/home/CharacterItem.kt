@@ -1,4 +1,6 @@
-package com.jaimeballesta.domain.model
+package com.jaimeballesta.domain.model.home
+
+import com.jaimeballesta.domain.model.ThumbnailItem
 
 data class CharacterItem(
     val id: String,

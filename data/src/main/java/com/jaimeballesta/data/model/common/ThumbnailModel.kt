@@ -1,4 +1,4 @@
-package com.jaimeballesta.data.model
+package com.jaimeballesta.data.model.common
 
 import com.google.gson.annotations.SerializedName
 

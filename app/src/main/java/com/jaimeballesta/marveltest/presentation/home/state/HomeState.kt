@@ -1,6 +1,6 @@
 package com.jaimeballesta.marveltest.presentation.home.state
 
-import com.jaimeballesta.domain.model.CharacterItem
+import com.jaimeballesta.domain.model.home.CharacterItem
 
 sealed class HomeState {
     object Loading: HomeState()
