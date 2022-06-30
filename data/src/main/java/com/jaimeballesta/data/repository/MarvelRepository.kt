@@ -2,6 +2,7 @@ package com.jaimeballesta.data.repository
 
 import com.jaimeballesta.data.source.RemoteDataSource
 import com.jaimeballesta.domain.model.detail.CharacterDetailItem
+import com.jaimeballesta.domain.model.detail.SectionDetailItem
 import com.jaimeballesta.domain.model.home.CharacterItem
 
 class MarvelRepository(private val remoteDataSource: RemoteDataSource) {
@@ -10,5 +11,11 @@ class MarvelRepository(private val remoteDataSource: RemoteDataSource) {
 
     suspend fun getCharacterDetails(characterId: String): List<CharacterDetailItem> =
         remoteDataSource.getDetailsCharacter(characterId)
+
+    suspend fun getDetailSection(
+        section: String,
+        characterId: String,
+    ): List<SectionDetailItem> =
+        remoteDataSource.getDetailSection(section, characterId)
 
 }

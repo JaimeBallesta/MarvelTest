@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
@@ -31,6 +32,10 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    buildFeatures{
+        viewBinding true
+    }
 }
 
 dependencies {
@@ -42,6 +47,9 @@ dependencies {
     implementation androidLibs.values()
     implementation kotlinLibs.values()
     implementation libs.values()
+    implementation 'androidx.appcompat:appcompat:1.4.2'
+    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt androidKaptLibs.values()
 
     testImplementation testLibs.values()

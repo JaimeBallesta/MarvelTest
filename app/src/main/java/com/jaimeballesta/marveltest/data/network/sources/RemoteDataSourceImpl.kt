@@ -3,6 +3,7 @@ package com.jaimeballesta.marveltest.data.network.sources
 import com.jaimeballesta.data.mappers.toDomain
 import com.jaimeballesta.data.source.RemoteDataSource
 import com.jaimeballesta.domain.model.detail.CharacterDetailItem
+import com.jaimeballesta.domain.model.detail.SectionDetailItem
 import com.jaimeballesta.domain.model.home.CharacterItem
 import com.jaimeballesta.marveltest.data.network.MarvelService
 
@@ -18,5 +19,9 @@ class RemoteDataSourceImpl(private val service: MarvelService) : RemoteDataSourc
             detailObject.data.results.map { it.toDomain() }
     } ?: emptyList()
 
+    override suspend fun getDetailSection(section: String, characterId: String): List<SectionDetailItem> =
+        service.getDetailSection(section, characterId)?.let { detailObject ->
+            detailObject.data.results.map { it.toDomain() }
+    } ?: emptyList()
 
 }

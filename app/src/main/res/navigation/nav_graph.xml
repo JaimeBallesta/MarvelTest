@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph.xml"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.jaimeballesta.marveltest.presentation.home.HomeFragment"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.jaimeballesta.marveltest.presentation.details.DetailFragment"
+        tools:layout="@layout/fragment_detail">
+        <argument
+            android:name="characterId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_detailFragment_to_detailSectionFragment"
+            app:destination="@id/detailSectionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailSectionFragment"
+        android:name="com.jaimeballesta.marveltest.presentation.details.DetailSectionFragment"
+        tools:layout="@layout/fragment_section_detail">
+        <argument
+            android:name="section"
+            app:argType="string" />
+        <argument
+            android:name="characterId"
+            app:argType="string" />
+    </fragment>
+</navigation>

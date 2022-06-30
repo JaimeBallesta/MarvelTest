@@ -1,11 +1,25 @@
 package com.jaimeballesta.marveltest.presentation.common
 
+import android.content.Context
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.annotation.LayoutRes
+import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.jaimeballesta.marveltest.di.API_KEY
-import com.jaimeballesta.marveltest.di.PRIVATE_KEY
+import com.bumptech.glide.Glide
+import com.jaimeballesta.domain.common.API_KEY
+import com.jaimeballesta.domain.common.PRIVATE_KEY
+import com.jaimeballesta.domain.common.notCharactersErrorCode
+import com.jaimeballesta.domain.common.notDetailsErrorCode
+import com.jaimeballesta.domain.common.unknownErrorCode
+import com.jaimeballesta.domain.common.connectionErrorCode
+import com.jaimeballesta.marveltest.R
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -28,4 +42,32 @@ fun getCurrentMD5(ts: String): String {
     val input = ts + PRIVATE_KEY + API_KEY
     val md = MessageDigest.getInstance("MD5")
     return BigInteger(1, md.digest(input.toByteArray())).toString(16).padStart(32, '0')
+}
+
+fun Fragment.getResourceView(resourceId: Int): View =
+    requireActivity().findViewById(resourceId)
+
+fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = true): View =
+    LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)
+
+fun ImageView.loadUrl(url: String) {
+    Glide.with(context).load(url).into(this)
+}
+
+fun ImageView.loadUrlRounded(url: String) {
+    Glide.with(context).load(url).circleCrop().error(R.drawable.ic_marvel_logo).into(this)
+}
+
+fun buildImageUrl(path: String?, extension: String?): String = "$path.$extension"
+
+fun Toolbar.setEndPadding(custom: Int) = this.setPadding(0, 0, custom, 0)
+
+fun Context.getErrorMessage(errorCode: String): String {
+    return when (errorCode.toInt()) {
+        connectionErrorCode -> getString(R.string.noConnectionMessage)
+        notCharactersErrorCode -> getString(R.string.noCharactersMessage)
+        notDetailsErrorCode -> getString(R.string.notDetailsMessage)
+        unknownErrorCode -> getString(R.string.unknownMessage)
+        else -> getString(R.string.unknownMessage)
+    }
 }
