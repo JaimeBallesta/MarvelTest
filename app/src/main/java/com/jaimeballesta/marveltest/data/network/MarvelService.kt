@@ -1,6 +1,7 @@
 package com.jaimeballesta.marveltest.data.network
 
 import com.jaimeballesta.data.model.details.CharacterDetailObjectModel
+import com.jaimeballesta.data.model.details.CharacterSectionDetailObjectModel
 import com.jaimeballesta.data.model.home.CharacterObjectModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -17,4 +18,8 @@ class MarvelService @Inject constructor(private val apiClient: MarvelApiClient) 
             apiClient.getCharacterDetails(characterId).body()
         }
 
+    suspend fun getDetailSection(section: String, characterId: String): CharacterSectionDetailObjectModel? =
+        withContext(Dispatchers.IO) {
+            apiClient.getCharacterDetailSection(section, characterId).body()
+        }
 }

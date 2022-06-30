@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">MarvelTest</string>
+    <string name="search_title_menu">Search</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="characters">Characters</string>
+    <string name="comics">Comics</string>
+    <string name="series">Series</string>
+    <string name="stories">Stories</string>
+    <string name="events">Events</string>
+    <string name="query_hint">search by character</string>
+    <string name="titleError">Sorry</string>
+    <string name="ok">Ok</string>
+    <string name="unknownMessage">An unexpected error occurred</string>
+    <string name="noCharactersMessage">Don\'t was possible get information of characters</string>
+    <string name="notDetailsMessage">Don\'t was possible get information of character Detail</string>
+    <string name="noConnectionMessage">Don\'t can make the request, please review you connection</string>
 </resources>

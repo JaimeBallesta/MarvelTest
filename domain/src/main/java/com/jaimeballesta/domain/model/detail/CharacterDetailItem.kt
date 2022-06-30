@@ -8,4 +8,7 @@ data class CharacterDetailItem(
     val description: String,
     val thumbnail: ThumbnailItem,
     val comics: DetailItemItem,
+    val series: DetailItemItem,
+    val stories: DetailItemItem,
+    val events: DetailItemItem,
 )

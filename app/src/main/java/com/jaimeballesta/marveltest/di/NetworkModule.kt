@@ -1,5 +1,8 @@
 package com.jaimeballesta.marveltest.di
 
+import com.jaimeballesta.domain.common.API_KEY
+import com.jaimeballesta.domain.common.API_LIMIT
+import com.jaimeballesta.domain.common.BASE_URL
 import com.jaimeballesta.marveltest.data.network.MarvelApiClient
 import com.jaimeballesta.marveltest.presentation.common.getCurrentMD5
 import dagger.Module
@@ -49,6 +52,7 @@ object NetworkModule {
                 .addQueryParameter("ts", time)
                 .addQueryParameter("apikey", API_KEY)
                 .addQueryParameter("hash", getCurrentMD5(time))
+                .addQueryParameter("limit", API_LIMIT)
                 .build()
 
             val requestBuilder = original.newBuilder()

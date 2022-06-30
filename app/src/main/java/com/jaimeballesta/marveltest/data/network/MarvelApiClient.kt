@@ -1,6 +1,7 @@
 package com.jaimeballesta.marveltest.data.network
 
 import com.jaimeballesta.data.model.details.CharacterDetailObjectModel
+import com.jaimeballesta.data.model.details.CharacterSectionDetailObjectModel
 import com.jaimeballesta.data.model.home.CharacterObjectModel
 import retrofit2.Response
 import retrofit2.http.GET
@@ -15,4 +16,10 @@ interface MarvelApiClient {
     suspend fun getCharacterDetails(
         @Path("characterId") characterId: String,
     ): Response<CharacterDetailObjectModel>
+
+    @GET("v1/public/characters/{characterId}/{section}")
+    suspend fun getCharacterDetailSection(
+        @Path("section") section: String,
+        @Path("characterId") characterId: String,
+    ): Response<CharacterSectionDetailObjectModel>
 }

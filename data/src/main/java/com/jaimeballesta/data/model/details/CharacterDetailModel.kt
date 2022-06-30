@@ -9,4 +9,7 @@ data class CharacterDetailModel(
     @SerializedName("description") val description: String,
     @SerializedName("thumbnail") val thumbnail: ThumbnailModel,
     @SerializedName("comics") val comics: DetailItemModel,
+    @SerializedName("series") val series: DetailItemModel,
+    @SerializedName("stories") val stories: DetailItemModel,
+    @SerializedName("events") val events: DetailItemModel,
 )
