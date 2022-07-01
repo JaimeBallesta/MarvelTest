@@ -7,7 +7,7 @@ import com.jaimeballesta.domain.common.Resource
 import com.jaimeballesta.domain.common.notCharactersErrorCode
 import com.jaimeballesta.domain.model.home.CharacterItem
 import com.jaimeballesta.marveltest.presentation.home.state.HomeState
-import com.jaimeballesta.usecases.GetCharactersUseCase
+import com.jaimeballesta.usecases.home.GetCharactersUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -32,7 +32,8 @@ class HomeViewModel @Inject constructor(private val getCharactersUseCase: GetCha
                 is Resource.Loading -> setState(HomeState.Loading)
                 is Resource.Error -> setErrorState(result.message)
                 is Resource.Success -> result.data?.let { characters ->
-                    setState(HomeState.LoadCharacters(characters))
+                    if (characters.isEmpty()) setErrorState(notCharactersErrorCode.toString())
+                    else setState(HomeState.LoadCharacters(characters))
                 } ?: setErrorState(notCharactersErrorCode.toString())
             }
         }

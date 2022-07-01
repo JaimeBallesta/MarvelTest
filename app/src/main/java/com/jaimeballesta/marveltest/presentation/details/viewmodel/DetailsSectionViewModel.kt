@@ -6,7 +6,7 @@ import com.jaimeballesta.domain.common.Resource
 import com.jaimeballesta.domain.common.notDetailsErrorCode
 import com.jaimeballesta.domain.common.unknownErrorCode
 import com.jaimeballesta.marveltest.presentation.details.state.CharacterDetailsSectionState
-import com.jaimeballesta.usecases.GetSectionDetailsUseCase
+import com.jaimeballesta.usecases.details.GetSectionDetailsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -29,7 +29,8 @@ class DetailsSectionViewModel @Inject constructor(
                 is Resource.Error -> setErrorState(result.message)
                 is Resource.Loading -> setState(CharacterDetailsSectionState.Loading)
                 is Resource.Success -> result.data?.let { details ->
-                    setState(CharacterDetailsSectionState.LoadSectionDetails(details))
+                    if (details.isEmpty()) setErrorState(notDetailsErrorCode.toString())
+                    else setState(CharacterDetailsSectionState.LoadSectionDetails(details))
                 } ?: setErrorState(notDetailsErrorCode.toString())
             }
         }

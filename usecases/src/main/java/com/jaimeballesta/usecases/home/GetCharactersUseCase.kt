@@ -1,4 +1,4 @@
-package com.jaimeballesta.usecases
+package com.jaimeballesta.usecases.home
 
 import com.jaimeballesta.data.repository.MarvelRepository
 import com.jaimeballesta.domain.common.connectionErrorCode

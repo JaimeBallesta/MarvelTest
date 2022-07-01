@@ -6,6 +6,7 @@ import com.jaimeballesta.data.model.details.CharacterDetailModel
 import com.jaimeballesta.data.model.details.CharacterSectionDetailModel
 import com.jaimeballesta.data.model.details.DetailItemModel
 import com.jaimeballesta.data.model.details.ItemModel
+import com.jaimeballesta.domain.common.EMPTY_DESCRIPTION
 import com.jaimeballesta.domain.model.home.CharacterItem
 import com.jaimeballesta.domain.model.ThumbnailItem
 import com.jaimeballesta.domain.model.detail.CharacterDetailItem
@@ -25,7 +26,7 @@ fun ThumbnailModel.toDomain(): ThumbnailItem = ThumbnailItem(
 fun CharacterDetailModel.toDomain(): CharacterDetailItem = CharacterDetailItem(
     id = id.toString(),
     name = name,
-    description = description,
+    description = if (description.isNotEmpty()) description else EMPTY_DESCRIPTION,
     thumbnail = thumbnail.toDomain(),
     comics = comics.toDomain(),
     series = series.toDomain(),
