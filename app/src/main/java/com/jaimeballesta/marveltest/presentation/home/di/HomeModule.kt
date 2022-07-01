@@ -1,7 +1,7 @@
 package com.jaimeballesta.marveltest.presentation.home.di
 
 import com.jaimeballesta.data.repository.MarvelRepository
-import com.jaimeballesta.usecases.GetCharactersUseCase
+import com.jaimeballesta.usecases.home.GetCharactersUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

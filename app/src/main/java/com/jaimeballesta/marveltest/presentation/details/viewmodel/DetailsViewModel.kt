@@ -6,7 +6,7 @@ import com.jaimeballesta.domain.common.Resource
 import com.jaimeballesta.domain.common.notDetailsErrorCode
 import com.jaimeballesta.domain.common.unknownErrorCode
 import com.jaimeballesta.marveltest.presentation.details.state.CharacterDetailsState
-import com.jaimeballesta.usecases.GetCharacterDetailsUseCase
+import com.jaimeballesta.usecases.details.GetCharacterDetailsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -27,7 +27,8 @@ class DetailsViewModel @Inject constructor(private val getCharacterDetailsUseCas
                 is Resource.Error -> setErrorState(result.message)
                 is Resource.Loading -> setState(CharacterDetailsState.Loading)
                 is Resource.Success -> result.data?.let { details ->
-                    setState(CharacterDetailsState.LoadDetails(details))
+                    if (details.isEmpty()) setErrorState(notDetailsErrorCode.toString())
+                    else setState(CharacterDetailsState.LoadDetails(details))
                 } ?: setErrorState(notDetailsErrorCode.toString())
             }
         }
